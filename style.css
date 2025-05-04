@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.center-text {
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.registration-container {
+    background-color: orange;
+    height: 600px;
+    width: 500px;
+    padding: 3px 1px;
+}
+
+.login-container {
+    background-color: green;
+    height: 500px;
+    width: 500px;
+    padding: 10px 0;
+}
+
+.aqi-container {
+    background-color: yellow;
+    height: 1100px;
+    width: 500px;
+    padding: 1px 0;
+}
+
+.center-form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+textarea {
+    width: 480px;
+    height: 50px;
+}
