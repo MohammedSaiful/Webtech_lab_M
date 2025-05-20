@@ -29,18 +29,18 @@
                     </div>
 
                     <div class="center-form">
-                        <form action="/xampp/htdocs/labM/index.html" onsubmit="return validation()">
+                        <form action="external.php" method="post" onsubmit="return validation()">
                             <label for="fname">Full Name:</label><br>
-                            <input type="text" id="fname" name="fname"><br>
+                            <input type="text" id="fname" name="fname" placeholder="Please write your full name here"><br>
 
                             <label for="email">Email:</label><br>
-                            <input type="text" id="email" name="email"><br>
+                            <input type="text" id="email" name="email" placeholder="Please write your email address here"><br>
 
                             <label for="pwd">Password:</label><br>
-                            <input type="password" id="pwd" name="pwd" minlength="8"><br>
+                            <input type="password" id="pwd" name="pwd" placeholder="Please create a strong password"><br>
 
                             <label for="confirm_pwd">Confirm Password:</label><br>
-                            <input type="password" id="confirm_pwd" name="confirm_pwd"><br>
+                            <input type="password" id="confirm_pwd" name="confirm_pwd" placeholder="Write your password for confirmation"><br>
 
                             <label for="DOB">Date of birth :</label><br>
                             <input type="date" id="DOB" name="DOB"><br>
@@ -63,15 +63,15 @@
                             <label for="male">Male</label>
                             <input type="radio" id="female" name="Gender" value="female">
                             <label for="female">Female</label><br>
-
-                            <input type="checkbox" id="terms_conditions" name="terms_conditions" value="Agree">
-                            <label for="terms_conditions">Agree to your policy</label><br>
-
-                            <label for="description">Write description about air polution</label><br>
-                            <input type="text" id="description" name="description" placeholder="What do you think about Air pollution" maxlength="200">
-                      
+                            <textarea name="description" placeholder="Enter your description..."></textarea>
                             <div class="center-form">
-                                <input type="submit" value="Submit"><br>
+                                <input type="checkbox" id="terms_conditions" name="terms_conditions" value="Agree">
+                                <label id="terms_conditions" for="terms_conditions">you agree to Terms of Service and
+                                    Privacy Policy</label>
+                            </div>
+
+                            <div class="center-form">
+                                <input type="submit" name="submit" value="submit"><br>
                             </div>
                         </form>
                     </div>
@@ -86,16 +86,16 @@
                 <div class="center-form">
                     <form action="/xampp/htdocs/labM/index.html" onsubmit="return validation()">
                         <label for="logname">Full Name:</label><br>
-                        <input type="text" id="logname" name="logname"><br>
+                        <input type="text" id="logname" name="logname" placeholder="Write your full name here"><br>
 
                         <label for="logemail">Email:</label><br>
-                        <input type="text" id="logemail" name="logemail"><br>
+                        <input type="text" id="logemail" name="logemail" placeholder="Write your email address here"><br>
 
                         <label for="logpwd">Password:</label><br>
-                        <input type="password" id="logpwd" name="logpwd" minlength="8"><br>
+                        <input type="password" id="logpwd" name="logpwd" placeholder="Write the password"><br>
 
                         <div class="center-form">
-                            <input type="submit" value="Submit1"><br>
+                            <input type="submit" name="Login" value="Login"><br>
                         </div>
                     </form>
                 </div>
