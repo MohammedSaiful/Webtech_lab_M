@@ -63,6 +63,13 @@ body {
     flex-wrap: nowrap;
 }
 
+.container {
+   
+    display: flex;
+    justify-content: center;
+
+}
+
 label {
     font-size: 15px;
 }
