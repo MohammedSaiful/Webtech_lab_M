@@ -13,28 +13,36 @@ function validation() {
     if (uname.value.trim() === "" || mail.value.trim() === "" || pass.value.trim() === "" ||
         conpass.value.trim() === "" || date.value.trim() === "" || desh.value.trim() === "" ||
         (!male.checked && !female.checked) || !term.checked) {
-
-        alert("Please fill in all fields.");
+        message.style.color = "red";
+        message.innerHTML = "Please fill out all fields before submitting.";
         return false;
     }
     if (!regexname.test(uname.value)) {
-        alert("Invalid Name");
+        message.style.color = "red";
+        message.innerHTML = "Name can not contain numbers";
         return false;
     }
     if (!mailpattern.test(mail.value)) {
+        message.style.color = "red";
         alert("Invalid email! Please enter a valid email address.");
         return false;
     }
     if (pass.value.length < 8) {
-        alert("Password must be at least 8 characters long.");
+        message.style.color = "red";
+        message.innerHTML ="Password must be at least 8 characters long.";
         return false;
     }
 
     if (conpass.value !== pass.value) {
-        alert("Passwords do not match.");
+        message.style.color = "red";
+        message.innerHTML ="Passwords do not match.";
         return false;
     }
 
     return true; // If everything is valid, form submission proceeds
+
+}
+
+function validation2() {
 
 }

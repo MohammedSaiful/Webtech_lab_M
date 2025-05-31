@@ -7,7 +7,7 @@
     <title>First Page</title>
     <link rel="icon" type="image/jpg" href="logo.jpg">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="AQI.css">
+
     <script src="validation.js" defer></script>
 </head>
 
@@ -27,20 +27,25 @@
                     <div class="center-text">
                         <h3>Registration</h3>
                     </div>
+                    <div class="center-text" id="message"></div>
 
                     <div class="center-form">
                         <form action="external.php" method="post" onsubmit="return validation()">
                             <label for="fname">Full Name:</label><br>
-                            <input type="text" id="fname" name="fname" placeholder="Please write your full name here"><br>
+                            <input type="text" id="fname" name="fname"
+                                placeholder="Please write your full name here"><br>
 
                             <label for="email">Email:</label><br>
-                            <input type="text" id="email" name="email" placeholder="Please write your email address here"><br>
+                            <input type="text" id="email" name="email"
+                                placeholder="Please write your email address here"><br>
 
                             <label for="pwd">Password:</label><br>
-                            <input type="password" id="pwd" name="pwd" placeholder="Please create a strong password"><br>
+                            <input type="password" id="pwd" name="pwd"
+                                placeholder="Please create a strong password"><br>
 
                             <label for="confirm_pwd">Confirm Password:</label><br>
-                            <input type="password" id="confirm_pwd" name="confirm_pwd" placeholder="Write your password for confirmation"><br>
+                            <input type="password" id="confirm_pwd" name="confirm_pwd"
+                                placeholder="Write your password for confirmation"><br>
 
                             <label for="DOB">Date of birth :</label><br>
                             <input type="date" id="DOB" name="DOB"><br>
@@ -83,17 +88,17 @@
                 <div>
                     <h3 class="center-text">Login</h3>
                 </div>
-                <div class="center-form">
-                    <form action="/xampp/htdocs/labM/index.html" onsubmit="return validation()">
-                        <label for="logname">Full Name:</label><br>
-                        <input type="text" id="logname" name="logname" placeholder="Write your full name here"><br>
 
+                <div class="center-form">
+                    <form action="Login.php" method="post">
                         <label for="logemail">Email:</label><br>
-                        <input type="text" id="logemail" name="logemail" placeholder="Write your email address here"><br>
+                        <input type="text" id="logemail" name="logemail"
+                            placeholder="Write your email address here"><br>
 
                         <label for="logpwd">Password:</label><br>
                         <input type="password" id="logpwd" name="logpwd" placeholder="Write the password"><br>
 
+                        <p class="center-form" id="message"></p>
                         <div class="center-form">
                             <input type="submit" name="Login" value="Login"><br>
                         </div>
@@ -117,44 +122,44 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Dhaka</td>
-                            <td>85</td>
+                            <td class="blur-text">Dhaka</td>
+                            <td class="blur-text">85</td>
                         </tr>
                         <tr>
-                            <td>Cumilla</td>
-                            <td>110</td>
+                            <td class="blur-text">Cumilla</td>
+                            <td class="blur-text">110</td>
                         </tr>
                         <tr>
-                            <td>Khulna</td>
-                            <td>95</td>
+                            <td class="blur-text">Khulna</td>
+                            <td class="blur-text">95</td>
                         </tr>
                         <tr>
-                            <td>Barisal</td>
-                            <td>78</td>
+                            <td class="blur-text">Barisal</td>
+                            <td class="blur-text">78</td>
                         </tr>
                         <tr>
-                            <td>Kustia</td>
-                            <td>102</td>
+                            <td class="blur-text">Kustia</td>
+                            <td class="blur-text">102</td>
                         </tr>
                         <tr>
-                            <td>Chandpur</td>
-                            <td>88</td>
+                            <td class="blur-text">Chandpur</td>
+                            <td class="blur-text">88</td>
                         </tr>
                         <tr>
-                            <td>Nuakhali</td>
-                            <td>75</td>
+                            <td class="blur-text">Nuakhali</td>
+                            <td class="blur-text">75</td>
                         </tr>
                         <tr>
-                            <td>Sylhet</td>
-                            <td>80</td>
+                            <td class="blur-text">Sylhet</td>
+                            <td class="blur-text">80</td>
                         </tr>
                         <tr>
-                            <td>Rajshahi</td>
-                            <td>90</td>
+                            <td class="blur-text">Rajshahi</td>
+                            <td class="blur-text">90</td>
                         </tr>
                         <tr>
-                            <td>Narshingdi</td>
-                            <td>70</td>
+                            <td class="blur-text">Narshingdi</td>
+                            <td class="blur-text">70</td>
                         </tr>
                     </tbody>
                 </table>
