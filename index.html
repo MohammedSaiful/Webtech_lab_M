@@ -71,7 +71,7 @@
                             <textarea name="description" placeholder="Enter your description..."></textarea>
                             <div class="center-form">
                                 <input type="checkbox" id="terms_conditions" name="terms_conditions" value="Agree">
-                                <label id="terms_conditions" for="terms_conditions">you agree to Terms of Service and
+                                <label for="terms_conditions">Agree to Terms of Service and
                                     Privacy Policy</label>
                             </div>
 
@@ -90,15 +90,15 @@
                 </div>
 
                 <div class="center-form">
-                    <form action="Login.php" method="post">
+                    <form action="Login.php" method="post" onsubmit="return validateLogin()">
                         <label for="logemail">Email:</label><br>
                         <input type="text" id="logemail" name="logemail"
                             placeholder="Write your email address here"><br>
 
-                        <label for="logpwd">Password:</label><br>
+                        <label for="logpswd">Password:</label><br>
                         <input type="password" id="logpwd" name="logpwd" placeholder="Write the password"><br>
 
-                        <p class="center-form" id="message"></p>
+                        <p class="center-form" id="log_message"></p>
                         <div class="center-form">
                             <input type="submit" name="Login" value="Login"><br>
                         </div>

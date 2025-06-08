@@ -1,54 +1,69 @@
-<?php
-session_start();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm User Information</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="main-container">
+<div class="container">
+    <div class="center-text">
+        <h2>User information</h2>
+    </div>
+    
+    <?php
+    session_start();
+    $registration_done = false;
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Get input from form
-    $email = trim($_POST["logemail"]);
-    $password = trim($_POST["logpwd"]);
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['logemail']) && isset($_POST['logpwd'])) {
+        $email = trim($_POST['logemail']);
+        $password = trim($_POST['logpwd']);
 
-    // Check if fields are filled
-    if (empty($email) || empty($password)) {
-        
-        echo "<p style='color:red;'>Please enter both email and password.</p>";
-        exit;
-    }
+        $conn = new mysqli("localhost", "root", "", "registration");
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-    // Connect to database
-    $conn = new mysqli("localhost", "root", "", "registration");
+        // WARNING: Only valid if passwords are stored in plain text (NOT RECOMMENDED)
+        $stmt = $conn->prepare("SELECT Name FROM registration_info1 WHERE Email = ? AND Password = ?");
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $stmt->store_result();
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($name);
+            $stmt->fetch();
 
-    // Prepare statement to avoid SQL injection
-    $stmt = $conn->prepare("SELECT Name, Password FROM registration_info1 WHERE Email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    // Check if user exists
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($name, $hashed_password);
-        $stmt->fetch();
-
-        // Verify password
-        if (password_verify($password, $hashed_password)) {
             $_SESSION["user_name"] = $name;
             $_SESSION["user_email"] = $email;
 
-            // Redirect to selection page or dashboard
-            header("Location: selection_page.php");
+            header("Location: show_aqi.php");
             exit;
         } else {
-            echo "<p style='color:red;'>Invalid password.</p>";
+            echo "<p style='color:red;'>Invalid email or password.</p>";
         }
-    } else {
-        echo "<p style='color:red;'>No account found with that email.</p>";
-    }
 
-    $stmt->close();
-    $conn->close();
-} else {
-    echo "<p style='color:red;'>Invalid request method.</p>";
-}
-?>
+        $stmt->close();
+        $conn->close();
+    } else {
+        echo "<p style='color:red;'>Invalid request. Please use the login form.</p>";
+        $registration_done = true;
+    }
+    ?>
+
+    <!-- Buttons -->
+     
+    <form method="post">
+        <div class="center-form">
+            <button type="button" onclick="window.location.href='index.html';" class="buttons">Back</button>
+            <?php if (!$registration_done): ?>
+                <button type="submit" name="confirm" class="buttons">Confirm</button>
+            <?php endif; ?>
+        </div>
+    </form>
+</div>
+</div>
+</body>
+</html>

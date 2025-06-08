@@ -16,6 +16,8 @@
     <?php
     session_start();
 
+    $registration_done = false;  // to remove the confirm button
+
     if (isset($_POST['submit'])) {
         $uname = htmlspecialchars($_POST['fname']);
         $email = htmlspecialchars($_POST['email']);
@@ -51,7 +53,7 @@
 
     // Save to DB if Confirm button was pressed
     if (isset($_POST['confirm'])) {
-    // Example DB connection
+    //  DB connection
         $conn = new mysqli("localhost", "root", "", "registration");
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -61,7 +63,9 @@
         $email1 = $_SESSION['temp_email'];
         $dob1 = $_SESSION['temp_dob'];
         $country1 = $_SESSION['temp_country'];
-        $pass1 = password_hash($_SESSION['temp_pass'], PASSWORD_DEFAULT);
+        $pass1 = $_SESSION['temp_pass'];    
+        //$pass1 = password_hash($_SESSION['temp_pass'], PASSWORD_DEFAULT);
+        //$confipass1 = $_SESSION['temp_pass'];
         $gender1 = isset($_SESSION['temp_gender']) ? $_SESSION['temp_gender'] : null;
         $description1 = isset($_SESSION['temp_description']) ? $_SESSION['temp_description'] : "";
         // Placeholder version (safe from SQL injection)
@@ -74,23 +78,26 @@
         $checkStmt->store_result();
 
         if ($checkStmt->num_rows > 0) {
-            echo "<p class=\"center-text\" style='color:red;'>This email is already registered. Please use a different email address.</p>";
+            echo "<p class=\"center-text\" style='color:red;'>This email is already registered. Please try with different email.</p>";
             $checkStmt->close();
             $conn->close();
+            $registration_done = true; 
         } else {
             $checkStmt->close();
 
             // Step 2: Insert new user
             $stmt = $conn->prepare("INSERT INTO registration_info1 
-                (Name, Email, Password, Confirm_Password, Date_of_birth, Country_Name, Gender, description)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssssss", $uname1, $email1, $pass1, $confipass1, $dob1, $country1, $gender1, $description1);
+                (Name, Email, Password, Date_of_birth, Country_Name, Gender, description)
+                VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $uname1, $email1, $pass1, $dob1, $country1, $gender1, $description1);
 
             if ($stmt->execute()) {
                 echo "<p class=\"center-text\" style='color:green;'>User registered successfully!</p>";
                 session_unset(); // Clear session data
+                $registration_done = true; 
             } else {
                 echo "<p class=\"center-text\" style='color:red;'>Error saving to database: " . $stmt->error . "</p>";
+                $registration_done = true; 
             }
 
             $stmt->close();
@@ -102,11 +109,14 @@
     
 
     ?>
-    
+    <!-- Buttons -->
+     
     <form method="post">
         <div class="center-form">
             <button type="button" onclick="window.location.href='index.html';" class="buttons">Back</button>
-            <button type="submit" name="confirm" class="buttons">Confirm</button>
+            <?php if (!$registration_done): ?>
+                <button type="submit" name="confirm" class="buttons">Confirm</button>
+            <?php endif; ?>
         </div>
     </form>
 </div>
