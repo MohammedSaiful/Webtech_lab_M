@@ -57,6 +57,13 @@ body {
     border: 2px solid white;
 }
 
+.aqi-container2 {
+    background-color: rgb(61, 118, 122);
+    height: 650px;
+    width: 500px;
+    padding: 1px 0;
+    border: 2px solid white;
+}
 .blur-text {
     filter: blur(2px);
 }
